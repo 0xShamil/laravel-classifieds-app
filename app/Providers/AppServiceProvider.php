@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 
 use App\Area;
+use App\Category;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,6 +19,11 @@ class AppServiceProvider extends ServiceProvider
         Area::creating(function($area) {
             $prefix = $area->parent ? $area->parent->name . '-' : '';
             $area->slug = str_slug($prefix . $area->name);
+        });
+
+        Category::creating(function($category) {
+            $prefix = $category->parent ? $category->parent->name . '-' : '';
+            $category->slug = str_slug($prefix . $category->name);
         });
     }
 
