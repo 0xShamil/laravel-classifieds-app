@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 use Kalnoy\Nestedset\NodeTrait;
 
+use App\Listing;
+
 class Category extends Model
 {
     use NodeTrait;
@@ -15,5 +17,17 @@ class Category extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function scopeWithListingsInArea($query, Area $area)
+    {
+    	return $query->with(['listings' => function($q) use ($area) {
+    		$q->isLive()->inArea($area);
+    	}]);
+    }
+
+    public function listings()
+    {
+    	return $this->hasMany(Listing::class);
     }
 }

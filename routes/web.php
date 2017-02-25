@@ -22,6 +22,23 @@ Route::group(['prefix' => '/{area}'], function() {
 			'uses' => 'Category\CategoryController@index',
 			'as' => 'category.index'
 		]);
+
+		Route::group(['prefix' => '/{category}'], function() {
+			Route::get('/listings', [
+				'uses' => 'Listing\ListingController@index',
+				'as' => 'listings.index'
+			]);
+		});
 	});
+
+	/**
+	 * Listings
+	 */
+
+	Route::get('/{listing}', [
+		'uses' => 'Listing\ListingController@show',
+		'as' => 'listings.show'
+	]);
+
 
 });
