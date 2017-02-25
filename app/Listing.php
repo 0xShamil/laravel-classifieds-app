@@ -60,4 +60,14 @@ class Listing extends Model
     {
     	return $this->category->price;
     }
+
+    public function favourites()
+    {
+        return $this->morphToMany(User::class, 'favouriteable');
+    }
+
+    public function favouritedBy(User $user)
+    {
+        return $this->favourites->contains($user);
+    }
 }
