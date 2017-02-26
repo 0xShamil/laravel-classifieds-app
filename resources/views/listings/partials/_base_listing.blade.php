@@ -10,5 +10,7 @@
 			<li><time>{{ $listing->created_at->diffForHumans() }}</time></li>
 			<li>{{  }}</li>
 		</ul>
+
+		{{ $links }}
 	</div>
 </div>
