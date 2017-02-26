@@ -35,6 +35,15 @@ Route::group(['prefix' => '/{area}'], function() {
 	 * Listings
 	 */
 
+	Route::group(['prefix' => '/listing', 'namespace' => 'Listing'], function() {
+		
+		Route::post('/{listing}/favourites', [
+			'uses' => 'ListingFavouriteController@store'
+			'as' => 'listings.favourites.store'
+		]);
+		
+	});
+
 	Route::get('/{listing}', [
 		'uses' => 'Listing\ListingController@show',
 		'as' => 'listings.show'
