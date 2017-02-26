@@ -81,7 +81,7 @@ class CategoryTableSeeder extends Seeder
         ];
 
         foreach ($categories as $category) {
-            \App\Category::create($category);
+            \App\Models\Category::create($category);
         }
     }
 }

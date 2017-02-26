@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 use Kalnoy\Nestedset\NodeTrait;
 
-use App\Listing;
+use App\Models\Listing;
 
 class Category extends Model
 {

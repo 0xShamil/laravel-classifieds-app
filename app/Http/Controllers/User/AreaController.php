@@ -5,7 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\Area;
+use App\Models\Area;
 
 class AreaController extends Controller
 {

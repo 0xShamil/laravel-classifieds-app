@@ -1,13 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Traits\Eloquent\{OrderableTrait, PivotOrderableTrait};
 
-use App\{User, Category, Area};
+use App\Models\{User, Category, Area};
 
 class Listing extends Model
 {

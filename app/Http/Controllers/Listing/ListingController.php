@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Listing;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use App\{Area, Category, Listing};
+use App\Models\{Area, Category, Listing};
 
 class ListingController extends Controller
 {
