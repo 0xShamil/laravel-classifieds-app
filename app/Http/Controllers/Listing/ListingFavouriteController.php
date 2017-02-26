@@ -16,7 +16,7 @@ class ListingFavouriteController extends Controller
 
 	public function index(Request $request)
 	{
-		$listings = $request->user()->favouriteListings()->with(['user'])->paginate(10);
+		$listings = $request->user()->favouriteListings()->with(['user', 'area'])->paginate(10);
 
 		return view('user.listings.favourites.index', compact('listings'));
 	}

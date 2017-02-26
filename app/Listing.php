@@ -5,13 +5,13 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-use App\Traits\Eloquent\OrderableTrait;
+use App\Traits\Eloquent\{OrderableTrait, PivotOrderableTrait};
 
 use App\{User, Category, Area};
 
 class Listing extends Model
 {
-    use SoftDeletes, OrderableTrait;
+    use SoftDeletes, OrderableTrait, PivotOrderableTrait;
 
     public function scopeIsLive($query)
     {

@@ -11,6 +11,6 @@
 			<li>{{  }}</li>
 		</ul>
 
-		{{ $links }}
+		{{ $links or '' }}
 	</div>
 </div>
