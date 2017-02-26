@@ -8,7 +8,11 @@
 
             @include('layouts.partials._navigation')
 
-            @yield('content')
+            <div class="container">
+                @include('layouts.partials._alerts')
+                @yield('content')
+            </div>
+            
         </div>
 
         <!-- Scripts -->
