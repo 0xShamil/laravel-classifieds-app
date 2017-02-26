@@ -38,6 +38,8 @@ class User extends Authenticatable
 
     public function viewedListings()
     {
-        return $this->belongsToMany(Listing::class, 'user_listing_views')->withTimestamps(); //TODO: refactor
+        return $this->belongsToMany(Listing::class, 'user_listing_views')
+                    ->withTimestamps()
+                    ->withPivot(['count', 'id']); 
     }
 }
