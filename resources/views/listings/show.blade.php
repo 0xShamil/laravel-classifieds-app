@@ -34,7 +34,7 @@
 
                     <hr>
 
-                    <p>Viewed: x times</p>
+                    <p>Viewed: {{ $listing->views() }} times</p>
                 </div>
             </div>
 
