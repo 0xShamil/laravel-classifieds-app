@@ -35,4 +35,9 @@ class User extends Authenticatable
                     ->withPivot(['created_at'])
                     ->orderByPivot('created_at', 'desc');
     }
+
+    public function viewedListings()
+    {
+        return $this->belongsToMany(Listing::class, 'user_listing_views')->withTimestamps(); //TODO: refactor
+    }
 }
