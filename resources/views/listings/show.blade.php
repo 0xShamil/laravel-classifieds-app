@@ -46,10 +46,14 @@
                     @if(Auth::guest())
                         <p><a href="/register">Sign up</a> or <a href="/login">Sign in</a> to contact listing owner</p>
                     @else
-                        <form action="" method="post">
-                            <div class="form-group">
-                                <label for="message">Message</label>
+                        <form action="{{ route('listings.contact.store', [$area, $listing]) }}" method="post">
+                            <div class="form-group{{ $errors->has('message') ? 'has-error' : '' }}">
+                                <label for="message" class="control-label">Message</label>
                                 <textarea name="message" id="message" cols="30" rows="5" class="form-control"></textarea>
+
+                                @if($errors->has('message'))
+                                    <span class="help-block">{{ $errors->first('message') }}</span>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-default">Send</button>
