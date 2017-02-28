@@ -21,11 +21,16 @@ class ComposerServiceProvider extends ServiceProvider
     {
         View::composer('*', AreaComposer::class);
 
-        View::composer(['listings.partials.form._areas', 'listings.partials.form._categories'], function($view) {
+        View::composer(['listings.partials.form._categories'], function($view) {
             $categories = Category::get()->toTree();
+
+            $view->with(compact('categories'));
+        });
+
+        View::composer(['listings.partials.form._areas'], function($view) {
             $areas = Area::get()->toTree();
 
-            $view->with(compact('categories', 'areas'));
+            $view->with(compact('areas'));
         });
     }
 

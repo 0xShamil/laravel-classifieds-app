@@ -9,6 +9,8 @@ use App\Models\{Area, Category, Listing};
 
 use App\Jobs\UserViewedListing;
 
+use App\Http\Requests\StoreListingFormRequest;
+
 class ListingController extends Controller
 {
     public function index(Area $area, Category $category)
@@ -36,7 +38,7 @@ class ListingController extends Controller
         return view('listings.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreListingFormRequest $request)
     {
         $listing = new Listing;
 
