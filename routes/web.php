@@ -62,6 +62,20 @@ Route::group(['prefix' => '/{area}'], function() {
 			'as' => 'listings.contact.store'
 		]);
 
+		Route::group(['middleware' => 'auth'], function() {
+
+			Route::get('/create', [
+				'uses' => 'ListingController@create',
+				'as' => 'listings.create'
+			]);
+
+			Route::post('/', [
+				'uses' => 'ListingController@store',
+				'as' => 'listings.store'
+			]);
+
+		});
+
 	});
 
 	Route::get('/{listing}', [

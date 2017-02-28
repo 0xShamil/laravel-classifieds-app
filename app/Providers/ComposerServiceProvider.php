@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\View;
 
 use App\Http\ViewComposers\AreaComposer;
 
+use App\Models\{Category, Area};
+
 class ComposerServiceProvider extends ServiceProvider
 {
     /**
@@ -18,6 +20,13 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('*', AreaComposer::class);
+
+        View::composer(['listings.partials.form._areas', 'listings.partials.form._categories'], function($view) {
+            $categories = Category::get()->toTree();
+            $areas = Area::get()->toTree();
+
+            $view->with(compact('categories', 'areas'));
+        });
     }
 
     /**
