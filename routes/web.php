@@ -57,7 +57,7 @@ Route::group(['prefix' => '/{area}'], function() {
 			'as' => 'listings.viewed.index'
 		]);
 
-		Route::post('/contact', [
+		Route::post('/{listing}/contact', [
 			'uses' => 'ListingContactController@store',
 			'as' => 'listings.contact.store'
 		]);
