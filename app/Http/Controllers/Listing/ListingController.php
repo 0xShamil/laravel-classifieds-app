@@ -38,7 +38,7 @@ class ListingController extends Controller
         return view('listings.create');
     }
 
-    public function store(StoreListingFormRequest $request)
+    public function store(StoreListingFormRequest $request, Area $area)
     {
         $listing = new Listing;
 
@@ -50,6 +50,33 @@ class ListingController extends Controller
 
         $listing->save();
 
+        return redirect()->route('listings.edit', [$area, $listing]);
+    }
 
+    public function edit(Request $request, Area $area, Listing $listing)
+    {
+        $this->authorize('edit', $listing);
+
+        return view('listings.edit', compact('listing'));
+    }
+
+    public function update(StoreListingFormRequest $request, Area $area, Listing $listing)
+    {
+        $this->authorize('update', $listing);
+
+        $listing->title = $request->title;
+        $listing->body = $request->body;
+
+        if(!$listing->live()) {
+            $listing->category_id = $request->category_id;
+        }
+
+        $listing->area_id = $request->area_id;
+
+        $listing->save();
+
+        //TODO: check for payment
+
+        return back()->withSuccess('Listing edited successfully');
     }
 }

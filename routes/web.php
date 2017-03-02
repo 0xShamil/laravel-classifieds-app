@@ -74,6 +74,16 @@ Route::group(['prefix' => '/{area}'], function() {
 				'as' => 'listings.store'
 			]);
 
+			Route::get('/{listing}/edit', [
+				'uses' => 'ListingController@edit',
+				'as' => 'listings.edit'
+			]);
+
+			Route::patch('/{listing}', [
+				'uses' => 'ListingController@update',
+				'as' => 'listings.update'
+			]);
+
 		});
 
 	});
