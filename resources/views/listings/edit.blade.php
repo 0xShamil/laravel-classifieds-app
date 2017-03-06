@@ -40,11 +40,20 @@
                             @endif
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group clearfix">
                             <button type="submit" class="btn btn-default">Save</button>
+
+                            @if(!$listing->live())
+                                <button type="submit" name="payment" value="true" class="btn btn-primary pull-right">Continue to Payment</button>
+                            @endif
                         </div>
+
+                        @if($listing->live())
+                            <input type="hidden" name="category_id" value="{{ $listing->category_id }}">
+                        @endif
                         
                         {{ csrf_field() }}
+                        {{ method_field('PATCH') }}
                     </form>
                 </div>
             </div>

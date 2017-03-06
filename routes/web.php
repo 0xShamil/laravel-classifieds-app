@@ -62,29 +62,24 @@ Route::group(['prefix' => '/{area}'], function() {
 			'as' => 'listings.contact.store'
 		]);
 
-		Route::group(['middleware' => 'auth'], function() {
+		/**
+		 * Payment
+		 */
+		Route::get('/{listing}/payment', 'ListingPaymentController@show')->name('listings.payment.show');
+		Route::post('/{listing}/payment', 'ListingPaymentController@store')->name('listings.payment.store');
 
-			Route::get('/create', [
-				'uses' => 'ListingController@create',
-				'as' => 'listings.create'
-			]);
 
-			Route::post('/', [
-				'uses' => 'ListingController@store',
-				'as' => 'listings.store'
-			]);
+		/**
+		 * Listing CRUD
+		 */
+		Route::group(['middleware' => 'auth'], function () {
+            Route::get('/create', 'ListingController@create')->name('listings.create');
+            Route::post('/', 'ListingController@store')->name('listings.store');
 
-			Route::get('/{listing}/edit', [
-				'uses' => 'ListingController@edit',
-				'as' => 'listings.edit'
-			]);
-
-			Route::patch('/{listing}', [
-				'uses' => 'ListingController@update',
-				'as' => 'listings.update'
-			]);
-
-		});
+            Route::get('/{listing}/edit', 'ListingController@edit')->name('listings.edit');
+            Route::patch('/{listing}', 'ListingController@update')->name('listings.update');
+            
+        });
 
 	});
 

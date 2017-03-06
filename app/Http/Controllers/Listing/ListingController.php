@@ -75,7 +75,9 @@ class ListingController extends Controller
 
         $listing->save();
 
-        //TODO: check for payment
+        if ($request->has('payment')) {
+            return redirect()->route('listings.payment.show', [$area, $listing]);
+        }
 
         return back()->withSuccess('Listing edited successfully');
     }
