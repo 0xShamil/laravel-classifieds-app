@@ -33,6 +33,33 @@ class ListingPaymentController extends Controller
             return back();
         }
 
-        dd($request->payment_method_nonce);
+        if($listing->cost() === 0) {
+            return back();
+        }
+
+        if(($nonce = $request->payment_method_nonce) === null) {
+            return back();
+        }
+
+        $result = \Braintree_Transaction::sale([
+            'amount' => $listing->cost(),
+            'paymentMethodNonce' => $nonce,
+            'options' => [
+                'submitForSettlement' => true
+            ]
+        ]);
+
+        if($result->success === false) {
+            return back()->withError('Something went wrong while processing your payment.');
+        }
+
+        $listing->live = true;
+        $listing->created_at = \Carbon\Carbon::now();
+        $listing->save();
+
+        return redirect()
+            ->route('listings.show', [$listing->area, $listing])
+            ->withSuccess('Payment Accepted. Congratulations! Your Listing is live now');
+
     }
 }
