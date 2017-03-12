@@ -27,6 +27,12 @@ class ListingPaymentController extends Controller
 
     public function store(Request $request, Area $area, Listing $listing)
     {
-    	//
+    	$this->authorize('touch', $listing);
+
+        if ($listing->live()) {
+            return back();
+        }
+
+        dd($request->payment_method_nonce);
     }
 }

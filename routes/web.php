@@ -6,6 +6,10 @@ Route::get('/', [
 
 Auth::routes();
 
+Route::get('/braintree/token', [
+	'uses' => 'Payment\BraintreePaymentController@token'
+]);
+
 Route::get('/user/area/{area}', [
 	'uses' => 'User\AreaController@store',
 	'as' => 'user.area.store'

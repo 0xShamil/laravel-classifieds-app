@@ -17,7 +17,7 @@
                         </form>
                     @else
                         <p>Total cost: ${{ number_format($listing->cost(), 2) }}</p>
-                        ..
+                        <payment-form></payment-form>
                     @endif
                 </div>
             </div>
