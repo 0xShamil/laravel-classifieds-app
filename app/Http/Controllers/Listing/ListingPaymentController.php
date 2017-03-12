@@ -62,4 +62,21 @@ class ListingPaymentController extends Controller
             ->withSuccess('Payment Accepted. Congratulations! Your Listing is live now');
 
     }
+
+    public function update(Request $request, Area $area, Listing $listing)
+    {
+        $this->authorize('touch', $listing);
+
+        if($listing->cost() > 0) {
+            return back();
+        }
+
+        $listing->live = true;
+        $listing->created_at = \Carbon\Carbon::now();
+        $listing->save();
+
+        return redirect()
+            ->route('listings.show', [$listing->area, $listing])
+            ->withSuccess('Congratulations! Your Listing is live now');
+    }
 }

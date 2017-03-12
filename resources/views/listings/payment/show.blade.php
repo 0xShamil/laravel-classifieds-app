@@ -8,7 +8,7 @@
                 <div class="panel-heading">Pay for listing</div>
                 <div class="panel-body">
                     @if($listing->cost() == 0)
-                        <form action="" method="post">
+                        <form action="{{ route('listings.payment.update', [$area, $listing]) }}" method="post">
                             <p>There's nothing for you to pay.</p>
                             <button type="submit" class="btn btn-primary">Complete</button>
 

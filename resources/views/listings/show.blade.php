@@ -6,7 +6,7 @@
             <div class="col-md-3">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <nav class="nav-stacked">
+                        <nav class="nav nav-stacked">
                             <li><a href="">Email to a Friend</a></li>
 
                             @if(!$listing->favouritedBy(Auth::user()))
