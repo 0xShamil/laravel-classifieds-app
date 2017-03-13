@@ -72,7 +72,11 @@ Route::group(['prefix' => '/{area}'], function() {
 		Route::get('/{listing}/payment', 'ListingPaymentController@show')->name('listings.payment.show');
 		Route::post('/{listing}/payment', 'ListingPaymentController@store')->name('listings.payment.store');
 		Route::patch('/{listing}/payment', 'ListingPaymentController@update')->name('listings.payment.update');
-
+		
+		/**
+		 * Unpublished
+		 */
+		Route::get('/unpublished', 'ListingUnpublishedController@index')->name('listings.unpublished.index');
 
 		/**
 		 * Listing CRUD

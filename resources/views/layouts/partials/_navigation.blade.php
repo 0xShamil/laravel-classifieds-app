@@ -29,8 +29,7 @@
                     <li><a href="{{ route('login') }}">Login</a></li>
                     <li><a href="{{ route('register') }}">Register</a></li>
                 @else
-                    <li><a href="{{ route('listings.viewed.index', [$area]) }}">Recently Viewed</a></li>
-                    <li><a href="{{ route('listings.favourites.index', [$area]) }}">Favourites</a></li>
+                    <li><a href="{{ route('listings.create', [$area]) }}">Submit a Free Listing</a></li>
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -38,9 +37,10 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="{{ route('listings.create', [$area]) }}">Submit a Free Listing</a>
-                            </li>
+                            <li><a href="{{ route('listings.viewed.index', [$area]) }}">Recently Viewed</a></li>
+                            <li><a href="{{ route('listings.favourites.index', [$area]) }}">Favourites</a></li>
+                            <hr>
+                            <li><a href="{{ route('listings.unpublished.index',[$area]) }}">Unpublished Listings</a></li>
                         </ul>
                     </li>
 
