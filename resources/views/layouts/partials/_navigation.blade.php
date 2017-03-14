@@ -40,7 +40,7 @@
                             <li><a href="{{ route('listings.viewed.index', [$area]) }}">Recently Viewed</a></li>
                             <li><a href="{{ route('listings.favourites.index', [$area]) }}">Favourites</a></li>
                             <hr>
-                            <li><a href="{{ route('listings.unpublished.index',[$area]) }}">Unpublished Listings</a></li>
+                            <li><a href="{{ route('listings.unpublished.index',[$area]) }}">Unpublished Listings ({{ $unpublishedListingsCount }})</a></li>
                         </ul>
                     </li>
 
