@@ -14,6 +14,8 @@ class ListingUnpublishedController extends Controller
 
     public function index(Request $request)
     {
-    	dd('index');
+    	$listings = $request->user()->listings()->with(['area'])->isNotLive()->latestFirst()->paginate(10);
+
+    	return view('user.listings.unpublished.index', compact('listings'));
     }
 }
