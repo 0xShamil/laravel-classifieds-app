@@ -77,6 +77,7 @@ Route::group(['prefix' => '/{area}'], function() {
 		 * Unpublished
 		 */
 		Route::get('/unpublished', 'ListingUnpublishedController@index')->name('listings.unpublished.index');
+		Route::get('/published', 'ListingPublishedController@index')->name('listings.published.index');
 
 		/**
 		 * Listing CRUD
