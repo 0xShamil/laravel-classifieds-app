@@ -18,10 +18,16 @@
 		</ul>
 
 		<ul class="list-inline">
-			<li><a href="#">Remove</a></li>
+			<li>
+				<a href="#" onclick="event.preventDefault(); document.getElementById('listings-destroy-form-{{ $listing->id }}').submit();">Remove</a>
+			</li>
 			<li><a href="{{ route('listings.edit', [$area, $listing]) }}">Edit</a></li>
 		</ul>
 	</div>
 	<hr>
 </div>
 
+<form action="{{ route('listings.destroy', [$area, $listing]) }}" method="post" id="listings-destroy-form-{{ $listing->id }}">
+	{{ csrf_field() }}
+	{{ method_field('DELETE') }}
+</form>

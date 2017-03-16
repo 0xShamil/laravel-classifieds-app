@@ -88,6 +88,7 @@ Route::group(['prefix' => '/{area}'], function() {
 
             Route::get('/{listing}/edit', 'ListingController@edit')->name('listings.edit');
             Route::patch('/{listing}', 'ListingController@update')->name('listings.update');
+            Route::delete('/{listing}', 'ListingController@destroy')->name('listings.destroy');
             
         });
 
