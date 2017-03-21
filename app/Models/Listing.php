@@ -9,9 +9,11 @@ use App\Traits\Eloquent\{OrderableTrait, PivotOrderableTrait};
 
 use App\Models\{User, Category, Area};
 
+use Laravel\Scout\Searchable;
+
 class Listing extends Model
 {
-    use SoftDeletes, OrderableTrait, PivotOrderableTrait;
+    use SoftDeletes, OrderableTrait, PivotOrderableTrait, Searchable;
 
     public function scopeIsLive($query)
     {
