@@ -91,4 +91,16 @@ class Listing extends Model
     {
         return $this->user->id === $user->id;
     }
+
+    public function toSearchableArray()
+    {
+        $properties = $this->toArray();
+
+        $properties['created_at_human'] = $this->created_at->diffForHumans();
+        $properties['user'] = $this->user;
+        $properties['category'] = $this->category;
+        $properties['area'] = $this->area;
+
+        return $properties;
+    }
 }
