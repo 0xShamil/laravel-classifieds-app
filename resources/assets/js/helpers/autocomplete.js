@@ -24,12 +24,33 @@ export const listingsautocomplete = (selector, categoryId, areaIds) => {
 				return '<div class="aa-suggestions-category">All categories</div>';
 			},
 			suggestion (suggestion) {
-				return '<span><a href=">' + suggestion.title + '</a> in '+ suggestion.category.name + ' </span> <span>' + suggestion.created_at_human + '&bull; ' + suggestion.area.name + ' </span>'
+				return '<span><a href="/' + suggestion.area.slug + '/' + suggestion.id + '">' + 
+						suggestion.title + '</a> in ' + 
+						suggestion.category.name + ' </span> <span>' + 
+						suggestion.created_at_human + '&bull; ' + 
+						suggestion.area.name + ' </span>'
 			}
 		},
 		displayKey: 'title',
 		empty: '<div class="aa-empty">No listigs found</div>'
 	}];
+
+	if (typeof categoryId !== 'undefined') {
+		sources.unshift({
+			source: autocomplete.sources.hits(listings, { hitsPerPage: 5, filters: areaFilters + ' AND category.id = ' + categoryId + ' AND live = 1'}),
+			templates: {
+				header: '<div class="aa-suggestions-category">This category</div>',
+				suggestion (suggestion) {
+					return '<span><a href="/' + suggestion.area.slug + '/' + suggestion.id + '">' +
+						suggestion.title + '</a> in ' + 
+						suggestion.created_at_human + '&bull; ' + 
+						suggestion.area.name + ' </span>'
+				}
+			},
+			displayKey: 'title',
+			empty: '<div class="aa-empty">No listigs found</div>'
+		})
+	}
 
 	return autocomplete(selector, {}, sources)
 }

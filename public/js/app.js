@@ -19997,12 +19997,26 @@ var listingsautocomplete = function listingsautocomplete(selector, categoryId, a
 				return '<div class="aa-suggestions-category">All categories</div>';
 			},
 			suggestion: function suggestion(_suggestion) {
-				return '<span><a href=">' + _suggestion.title + '</a> in ' + _suggestion.category.name + ' </span> <span>' + _suggestion.created_at_human + '&bull; ' + _suggestion.area.name + ' </span>';
+				return '<span><a href="/' + _suggestion.area.slug + '/' + _suggestion.id + '">' + _suggestion.title + '</a> in ' + _suggestion.category.name + ' </span> <span>' + _suggestion.created_at_human + '&bull; ' + _suggestion.area.name + ' </span>';
 			}
 		},
 		displayKey: 'title',
 		empty: '<div class="aa-empty">No listigs found</div>'
 	}];
+
+	if (typeof categoryId !== 'undefined') {
+		sources.unshift({
+			source: __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default.a.sources.hits(listings, { hitsPerPage: 5, filters: areaFilters + ' AND category.id = ' + categoryId + ' AND live = 1' }),
+			templates: {
+				header: '<div class="aa-suggestions-category">This category</div>',
+				suggestion: function suggestion(_suggestion2) {
+					return '<span><a href="/' + _suggestion2.area.slug + '/' + _suggestion2.id + '">' + _suggestion2.title + '</a> in ' + _suggestion2.created_at_human + '&bull; ' + _suggestion2.area.name + ' </span>';
+				}
+			},
+			displayKey: 'title',
+			empty: '<div class="aa-empty">No listigs found</div>'
+		});
+	}
 
 	return __WEBPACK_IMPORTED_MODULE_0_autocomplete_js___default()(selector, {}, sources);
 };
