@@ -83,7 +83,7 @@ Route::group(['prefix' => '/{area}'], function() {
 		 * Sharing a listing
 		 */
 		Route::get('/{listing}/share', 'ListingShareController@index')->name('listings.share.index');
-		Route::post('/{listing}/store', 'ListingShareController@index')->name('listings.store.index');
+		Route::post('/{listing}/store', 'ListingShareController@store')->name('listings.share.store');
 
 		/**
 		 * Listing CRUD

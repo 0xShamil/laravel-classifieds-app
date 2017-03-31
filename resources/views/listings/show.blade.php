@@ -7,7 +7,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <nav class="nav nav-stacked">
-                            <li><a href="">Email to a Friend</a></li>
+                            <li><a href="{{ route('listings.share.index', [$area, $listing]) }}">Email to a Friend</a></li>
 
                             @if(!$listing->favouritedBy(Auth::user()))
                                 <li>
