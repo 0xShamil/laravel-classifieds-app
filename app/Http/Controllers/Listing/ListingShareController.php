@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 
 use App\Models\{Area, Listing};
 
+use App\Http\Requests\StoreListingShareFormRequest;
+
 class ListingShareController extends Controller
 {
 	public function __construct()
@@ -19,8 +21,8 @@ class ListingShareController extends Controller
     	return view('listings.share.index', compact('listing'));
     }
 
-    public function store()
+    public function store(StoreListingShareFormRequest $request)
     {
-    	//
+    	dd($request->emails);
     }
 }
